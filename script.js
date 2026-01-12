@@ -50,7 +50,7 @@ function getTrashNoteTemplate(indexTrashNote) {
 
 //rend archved notes
 function renderArchiveNotes() {
-    let archiveContentRef = document.getElementById('archive-content');
+    let archiveContentRef = document.getElementById('archiveContent');
     archiveContentRef.innerHTML = '';
     for (let indexArchiveNote = 0; indexArchiveNote < archiveNotes.length; indexArchiveNote++) {
         archiveContentRef.innerHTML += getArchiveNoteTemplate(indexArchiveNote);
@@ -61,7 +61,7 @@ function getArchiveNoteTemplate(indexArchiveNote) {
     return `
         <div class="note">
             <span>${archiveNotes[indexArchiveNote]}</span>
-            <button onclick="archiveNote(${indexArchiveNote})">Restore</button>
+            <button onclick="transferNoteToArchive(${indexArchiveNote})">Restore</button>
         </div>
     `;
 }
@@ -70,7 +70,7 @@ function getArchiveNoteTemplate(indexArchiveNote) {
 function addNote() {
     notes.push(noteInput); //add to array
     renderNotes() // show safed notes
-    noteInput = '';//clean input field
+    noteInput = '';
 }
 
 document.getElementById('noteInput').addEventListener('keydown', function (event) {
@@ -80,6 +80,38 @@ document.getElementById('noteInput').addEventListener('keydown', function (event
     }
 });
 
+//transfer note to trash
+function transferNote(indexNote) {
+    let trashNote = notes.splice(indexNote, 1); //transfer from array to trash array
+    trashNotes.push(trashNote);
+    renderNotes()
+    renderTrashNotes()
+}
+
+function transferNoteToArchive(trashNote) {
+    let archiveNote = trashNotes.splice(indexTrashNote, 1); //transfer from trash array to archive array
+    archiveNotes.push(archiveNote);
+    renderNotes()
+    renderTrashNotes() 
+    renderArchiveNotes() 
+}
+
+
+
+//dialog archive
+function openArchivedNotesContainer() {
+  dialogRef.showModal();
+}
+
+function closeArchivedNotesContainer() {
+  dialogRef.close();
+}
+
+// function toggleDarkMode() {
+//     document.body.classList.toggle('dark-mode');
+// }
+
+//-------------------------------
 //save notes in local storage
 function saveNote() {
     if (noteInput != "") {
@@ -90,15 +122,4 @@ function saveNote() {
 
     renderNotes();
 }
-
-function transferNote(indexNote) {
-    let trashNote = notes.splice(indexNote, 1); //transfer from array to trash array
-    trashNotes.push(trashNote);
-    renderNotes() // show safed notes
-    renderTrashNotes() // show trash notes
-}
-
-// function toggleDarkMode() {
-//     document.body.classList.toggle('dark-mode');
-// }
-
+//-------------------------------
