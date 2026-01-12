@@ -21,11 +21,11 @@
                 <h1>Mein Notizblock</h1>
             </header>
             <div class="input-note-bar">
-                <input class="input-error" id="noteInput" type="text" placeholder="Schreibe eine Notiz...">
+                <input id="noteInput" type="text" placeholder="Schreibe eine Notiz...">
                 <button onclick="addNote()">Notiz speichern</button>
             </div>
             <p class="error-message hidden" id="errorMessage">Bitte gib eine Notiz ein!
-                </p>
+            </p>
             <div class="layout">
                 <section class="card-notes">
                     <h2>Meine Notizen</h2>
@@ -38,18 +38,20 @@
                     <div class="trash-actions">
                         <button onclick="openArchivedNotesContainer()" class="trash-actions-button">Archiv</button>
                         <dialog id="dialogMode">
-                            <header>
-                                <h3>Archivierte Notizen</h3>
-                                <img class="kreuz-schließen" id="closeDialog" src="./assets/icons/close.png"
-                                    alt="Kreuz zum Fenster schließen" onclick="closeArchivedNotesContainer()"
-                                    tabindex="0">
-                            </header>
-                            <section>
-                                <div id="archiveContent"></div>
-                            </section>
-                            <footer>
-                                <button class="trash-actions-button">Alles entgültig löschen</button>
-                            </footer>
+                            <div class="dialog-content">
+                                <header class="header-dialog">
+                                    <h3>Archivierte Notizen</h3>
+                                    <img class="close-dialog-button" id="closeDialog" src="./assets/icons/close.png"
+                                        alt="Kreuz zum Fenster schließen" onclick="closeArchivedNotesContainer()"
+                                        tabindex="0">
+                                </header>
+                                <section>
+                                    <div id="archiveContent"></div>
+                                </section>
+                                <footer>
+                                    <button class="trash-actions-button">Alles entgültig löschen</button>
+                                </footer>
+                            </div>
                         </dialog>
                         <button class="trash-actions-button">Wiederherstellen</button>
                     </div>
