@@ -21,20 +21,29 @@
                 <h1>Mein Notizblock</h1>
             </header>
             <div class="input-note-bar">
-                <input id="note-input" type="text" placeholder="Schreibe eine Notiz...">
+                <input id="noteInput" type="text" placeholder="Schreibe eine Notiz...">
                 <button onclick="addNote()">Notiz speichern</button>
             </div>
             <div class="layout">
                 <section class="card-notes">
                     <h2>Meine Notizen</h2>
-                    <div id="notes-content"></div>
+                    <div id="notesContent"></div>
                 </section>
                 <section class="card-notes trash">
                     <h2>Papierkorb</h2>
-                    <div id="trash-content"></div>
+                    <div id="trashContent"></div>
 
                     <div class="trash-actions">
-                        <button class="trash-actions-button">Endgültig loschen</button>
+                        <button class="trash-actions-button">Archive</button>
+                        <dialog>
+                            <header>
+                                <h3>Archivierte Notizen</h3>
+                            </header>
+                            <section>
+                                <div id="archiveNotes"></div>
+                            </section>
+                            <footer><button class="trash-actions-button">Entgültig löschen</button></footer>
+                        </dialog>
                         <button class="trash-actions-button">Wiederherstellen</button>
                     </div>
                 </section>
