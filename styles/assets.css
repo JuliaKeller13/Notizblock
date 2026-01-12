@@ -1,0 +1,43 @@
+/*buttons design*/
+.input-note-bar button {
+    background: #24aa88d5;
+    color: white;
+    border: none;
+    border-radius: 14px;
+    padding: 14px 24px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 14px 14px 28px rgba(47, 47, 47, 0.15);
+}
+
+.input-note-bar button:hover{
+    background: #952ad7cd;    
+    transition: 0.2s;
+}
+
+.note button {
+    background: #24aa88d5;
+    color: white;
+    border: none;
+    border-radius: 14px;
+    padding: 8px 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+.note button:hover{
+    background: #952ad7cd;
+    transition: 0.2s;
+}
+
+.trash-actions button {
+    background: #ffffff;
+    border: none;
+    border-radius: 14px;
+    padding: 12px 18px;
+    font-weight: 600;
+    cursor: pointer;
+     box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}

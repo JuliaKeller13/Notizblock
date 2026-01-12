@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Notizblock</title>
+    <link rel="icon" type="image/png" href="./assets/icons/icon-pen.png">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./styles/standards.css">
+    <link rel="stylesheet" href="./styles/assets.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body onload="init()">
+    <main class="body-content">
+        <div class="notepad-content">
+            <header class="header">
+                <h1>Mein Notizblock</h1>
+            </header>
+            <div class="input-note-bar">
+                <input id="note-input" type="text" placeholder="Schreibe eine Notiz...">
+                <button onclick="addNote()">Notiz speichern</button>
+            </div>
+            <div class="layout">
+                <section class="card-notes">
+                    <h2>Meine Notizen</h2>
+                    <div id="notes-content"></div>
+                </section>
+                <section class="card-notes trash">
+                    <h2>Papierkorb</h2>
+                    <div id="trash-content"></div>
+
+                    <div class="trash-actions">
+                        <button class="trash-actions-button">Endgültig loschen</button>
+                        <button class="trash-actions-button">Wiederherstellen</button>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

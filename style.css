@@ -1,0 +1,105 @@
+body{
+    background-color: #e5ece5;
+}
+
+.body-content {
+    height: 100vh;
+    background-image: url("./assets/imgs/desk.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.notepad-content {
+    width: 80%;
+    max-width: 1440px;
+    padding: 32px;
+    border-radius: 14px;
+    background-color: #ffffffd6;
+    font-family: "PT Sans", sans-serif;
+    color: #2e2f31;
+    margin-top: 10vh;
+}
+
+.header {   
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: 600;
+}
+
+/*add note bar*/
+.input-note-bar {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 32px;
+}
+
+.input-note-bar input {
+    flex: 1;
+    padding: 18px;
+    border-radius: 14px;
+    border: none;
+    background: #ffffff;
+    box-shadow: 4px 3px 61px -10px rgba(150, 150, 157, 1);
+    font-size: 16px;
+}
+
+/*notes and trash notes sections*/
+.layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.layout > * {
+    flex: 1 1 calc(50% - 15px);
+}
+
+
+/*notes container*/
+.card-notes {
+    background: rgba(255,255,255,0.85);
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow:
+        0 35px 70px rgba(0,0,0,0.10),
+        inset 0 0 0 1px rgba(255,255,255,0.6);
+}
+
+.card-notes h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #2e2f31;
+}
+
+.note {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 20px;
+    border-radius: 14px;
+    margin-bottom: 16px;
+    font-size: 16px;
+    color: #2e2f31;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+/*trash notes container*/
+.trash .note {
+    background: rgba(162, 161, 161, 0.412);
+}
+
+.trash-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+}
