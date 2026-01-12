@@ -4,6 +4,7 @@ let trashNotes = [];
 let archiveNotes = [];
 let noteInputRef = document.getElementById('noteInput');
 let noteInput = noteInputRef.value;
+const dialogRef = document.getElementById("dialogMode");
 
 
 
@@ -43,7 +44,8 @@ function getTrashNoteTemplate(indexTrashNote) {
     return `
         <div class="note">
             <span>${trashNotes[indexTrashNote]}</span>
-            <button onclick="archiveNote(${indexTrashNote})">Archivieren</button>
+            <button onclick="transferNoteToArchive(${indexTrashNote})">Archivieren</button>
+            <button onclick="toRestoreNote(${indexTrashNote})">Wiederherstellen</button>
         </div>
     `;
 }
@@ -61,7 +63,7 @@ function getArchiveNoteTemplate(indexArchiveNote) {
     return `
         <div class="note">
             <span>${archiveNotes[indexArchiveNote]}</span>
-            <button onclick="transferNoteToArchive(${indexArchiveNote})">Restore</button>
+            <button onclick="deleteNote(${indexArchiveNote})">entgültig löschen</button>
         </div>
     `;
 }
@@ -69,7 +71,7 @@ function getArchiveNoteTemplate(indexArchiveNote) {
 //add note
 function addNote() {
     notes.push(noteInput); //add to array
-    renderNotes() // show safed notes
+    renderNotes()
     noteInput = '';
 }
 
@@ -88,7 +90,8 @@ function transferNote(indexNote) {
     renderTrashNotes()
 }
 
-function transferNoteToArchive(trashNote) {
+//transfer note to archive
+function transferNoteToArchive(indexTrashNote) {
     let archiveNote = trashNotes.splice(indexTrashNote, 1); //transfer from trash array to archive array
     archiveNotes.push(archiveNote);
     renderNotes()
@@ -96,7 +99,20 @@ function transferNoteToArchive(trashNote) {
     renderArchiveNotes() 
 }
 
+//restore note
+function toRestoreNote(indexTrashNote) {
+    let restoreNote = trashNotes.splice(indexTrashNote, 1); //transfer from trash array to archive array
+    notes.push(restoreNote);
+    renderNotes()
+    renderTrashNotes() 
+    renderArchiveNotes() 
+}
 
+function deleteNote(){
+    let archiveNote = trashNotes.splice(indexTrashNote, 1); //transfer from trash array to archive array
+    archiveNotes.push(archiveNote);
+    renderArchiveNotes()
+}
 
 //dialog archive
 function openArchivedNotesContainer() {

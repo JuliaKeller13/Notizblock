@@ -34,16 +34,18 @@
                     <div id="trashContent"></div>
 
                     <div class="trash-actions">
-                        <button class="trash-actions-button">Archive</button>
-                        <dialog>
+                        <button onclick="openArchivedNotesContainer()" class="trash-actions-button">Archiv</button>
+                        <dialog id="dialogMode">
                             <header>
                                 <h3>Archivierte Notizen</h3>
+                                <img class="kreuz-schließen" id="closeDialog" src="./assets/icons/close.png"
+                                    alt="Kreuz zum Fenster schließen" onclick="closeArchivedNotesContainer()" tabindex="0">
                             </header>
                             <section>
                                 <div id="archiveContent"></div>
                             </section>
                             <footer>
-                                <button class="trash-actions-button">Entgültig löschen</button>
+                                <button class="trash-actions-button">Alles entgültig löschen</button>
                             </footer>
                         </dialog>
                         <button class="trash-actions-button">Wiederherstellen</button>
