@@ -125,8 +125,8 @@ h1 {
 .dialog-content{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin: 10%;
+    justify-content: space-between;
+    margin: 20px;
 }
 
 .header-dialog{
