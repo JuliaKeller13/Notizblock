@@ -70,10 +70,14 @@ function getArchiveNoteTemplate(indexArchiveNote) {
 //add note
 function addNote() {
     let noteInput = noteInputRef.value;
+    let errorRef = document.getElementById('errorMessage');
     if (noteInput === '') {
-        document.getElementById('errorMessage').classList.remove('hidden');
+        errorRef.classList.remove('hidden');
+        noteInputRef.classList.add('input-error');
         return;
-    }    
+    }
+    errorRef.classList.add('hidden');
+    noteInputRef.classList.remove('input-error');
     notes.push(noteInput); //add to array
     renderNotes()
     noteInputRef.value = '';
