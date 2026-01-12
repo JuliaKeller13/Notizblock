@@ -1,4 +1,4 @@
-body{
+body {
     background-color: #e5ece5;
 }
 
@@ -24,7 +24,7 @@ body{
     margin-top: 10vh;
 }
 
-.header {   
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -60,19 +60,19 @@ h1 {
     gap: 30px;
 }
 
-.layout > * {
+.layout>* {
     flex: 1 1 calc(50% - 15px);
 }
 
 
 /*notes container*/
 .card-notes {
-    background: rgba(255,255,255,0.85);
+    background: rgba(255, 255, 255, 0.85);
     border-radius: 14px;
     padding: 24px;
     box-shadow:
-        0 35px 70px rgba(0,0,0,0.10),
-        inset 0 0 0 1px rgba(255,255,255,0.6);
+        0 35px 70px rgba(0, 0, 0, 0.10),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.6);
 }
 
 .card-notes h2 {
@@ -90,7 +90,7 @@ h1 {
     margin-bottom: 16px;
     font-size: 16px;
     color: #2e2f31;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
 }
 
 /*trash notes container*/
@@ -102,4 +102,16 @@ h1 {
     display: flex;
     justify-content: space-between;
     margin-top: 24px;
+}
+
+.error-message {
+    color: rgb(229, 20, 173);
+    display: none;
+    font-size: 14px;
+    margin-top: 6px;
+    animation: shake 0.2s ease-in-out 2;
+}
+
+.hidden {
+    display: none;
 }

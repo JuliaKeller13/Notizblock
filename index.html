@@ -22,6 +22,8 @@
             </header>
             <div class="input-note-bar">
                 <input id="noteInput" type="text" placeholder="Schreibe eine Notiz...">
+                <p class="error-message hidden" id="errorMessage">Bitte gib eine Notiz ein!
+                </p>
                 <button onclick="addNote()">Notiz speichern</button>
             </div>
             <div class="layout">
@@ -39,7 +41,8 @@
                             <header>
                                 <h3>Archivierte Notizen</h3>
                                 <img class="kreuz-schließen" id="closeDialog" src="./assets/icons/close.png"
-                                    alt="Kreuz zum Fenster schließen" onclick="closeArchivedNotesContainer()" tabindex="0">
+                                    alt="Kreuz zum Fenster schließen" onclick="closeArchivedNotesContainer()"
+                                    tabindex="0">
                             </header>
                             <section>
                                 <div id="archiveContent"></div>

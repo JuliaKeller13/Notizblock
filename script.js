@@ -3,7 +3,6 @@ let trashNotes = [];
 // let savedNotes = [];
 let archiveNotes = [];
 let noteInputRef = document.getElementById('noteInput');
-let noteInput = noteInputRef.value;
 const dialogRef = document.getElementById("dialogMode");
 
 
@@ -70,9 +69,14 @@ function getArchiveNoteTemplate(indexArchiveNote) {
 
 //add note
 function addNote() {
+    let noteInput = noteInputRef.value;
+    if (noteInput === '') {
+        document.getElementById('errorMessage').classList.remove('hidden');
+        return;
+    }    
     notes.push(noteInput); //add to array
     renderNotes()
-    noteInput = '';
+    noteInputRef.value = '';
 }
 
 document.getElementById('noteInput').addEventListener('keydown', function (event) {
@@ -129,13 +133,13 @@ function closeArchivedNotesContainer() {
 
 //-------------------------------
 //save notes in local storage
-function saveNote() {
-    if (noteInput != "") {
-        notes.push(noteInput);
-    }
+// function saveNote() {
+//     if (noteInput != "") {
+//         notes.push(noteInput);
+//     }
 
-    saveToLocalStorage();
+//     saveToLocalStorage();
 
-    renderNotes();
-}
+//     renderNotes();
+// }
 //-------------------------------
