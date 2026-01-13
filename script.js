@@ -48,7 +48,7 @@ function getTrashNoteTemplate(indexTrashNote) {
             <span>${trashNotes[indexTrashNote]}</span>
             <div class="note-actions">
                 <button onclick="transferNoteToArchive(${indexTrashNote})">Archivieren</button>
-                <button onclick="toRestoreNote(${indexTrashNote})">Wiederherstellen</button>
+                <button onclick="restoreFromTrash(${indexTrashNote})">Wiederherstellen</button>
             </div>
         </div>
     `;
@@ -68,7 +68,8 @@ function getArchiveNoteTemplate(indexArchiveNote) {
         <div class="note">
             <span>${archiveNotes[indexArchiveNote]}</span>
             <div class="note-actions">
-                <button onclick="deleteNote(${indexArchiveNote})">Endgültig löschen</button>
+                <button onclick="deleteArchivedNote(${indexArchiveNote})">Endgültig löschen</button>
+                <button onclick="restoreFromArchive(${indexArchiveNote})">Wiederherstellen</button>
             </div>
         </div>
     `;
@@ -109,15 +110,25 @@ function saveToLocalStorage() {
 }
 
 function getFromLocalStorage() {
-    notes = JSON.parse(localStorage.getItem('notes'));
-    trashNotes = JSON.parse(localStorage.getItem('trashNotes'));
-    archiveNotes = JSON.parse(localStorage.getItem('archiveNotes'));
+    try {
+        notes = JSON.parse(localStorage.getItem('notes')) || [];
+        trashNotes = JSON.parse(localStorage.getItem('trashNotes')) || [];
+        archiveNotes = JSON.parse(localStorage.getItem('archiveNotes')) || [];
+    } catch (error) {
+        console.warn('LocalStorage leer oder beschädigt – wurde zurückgesetzt', error);
+
+        notes = [];
+        trashNotes = [];
+        archiveNotes = [];
+
+        saveToLocalStorage();
+    }
 }
 
 
 //transfer note to trash
 function transferNote(indexNote) {
-    let trashNote = notes.splice(indexNote, 1); //transfer from array to trash array
+    let trashNote = notes.splice(indexNote, 1)[0]; //transfer from array to trash array
     trashNotes.push(trashNote);
     saveToLocalStorage();
     renderNotes();
@@ -126,7 +137,7 @@ function transferNote(indexNote) {
 
 //transfer note to archive
 function transferNoteToArchive(indexTrashNote) {
-    let archiveNote = trashNotes.splice(indexTrashNote, 1); //transfer from trash array to archive array
+    let archiveNote = trashNotes.splice(indexTrashNote, 1)[0]; //transfer from trash array to archive array
     archiveNotes.push(archiveNote);
     renderNotes();
     renderTrashNotes();
@@ -134,19 +145,48 @@ function transferNoteToArchive(indexTrashNote) {
 }
 
 //restore note
-function toRestoreNote(indexTrashNote) {
-    let restoreNote = trashNotes.splice(indexTrashNote, 1); //transfer from trash array to archive array
+function restoreFromTrash(indexTrashNote) {
+    let restoreNote = trashNotes.splice(indexTrashNote, 1)[0];
     notes.push(restoreNote);
     saveToLocalStorage();
     renderNotes();
     renderTrashNotes();
 }
 
+function restoreFromArchive(indexArchiveNote) {
+    let restoreNote = archiveNotes.splice(indexArchiveNote, 1)[0];
+    notes.push(restoreNote);
+
+    saveToLocalStorage();
+    renderNotes();
+    renderArchiveNotes();
+}
+
+//delete note
 function deleteNote(indexArchiveNote) {
-    archiveNotes.splice(indexArchiveNote, 1);
+    archiveNotes.splice(indexArchiveNote, 1)[0];
     saveToLocalStorage();
     renderArchiveNotes();
 }
+
+function deleteArchivedNote(indexArchiveNote) {
+    if (!confirm('Diese Notiz wirklich endgültig löschen?')) {
+        return;
+    }
+    archiveNotes.splice(indexArchiveNote, 1)[0];
+    saveToLocalStorage();
+    renderArchiveNotes();
+}
+
+function deleteAllArchivedNotes() {
+    if (!confirm('Willst du wirklich alle archivierten Notizen endgültig löschen?')) {
+        return;
+    }
+    archiveNotes = [];
+    saveToLocalStorage();
+    renderArchiveNotes();
+}
+
 
 //dialog archive
 function openArchivedNotesContainer() {
