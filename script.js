@@ -86,10 +86,7 @@ function addNote() {
     }
     errorRef.classList.add('hidden');
     noteInputRef.classList.remove('input-error');
-
-    if (noteInput.value != '') {
-        notes.push(noteInput); //add to array
-    }
+    notes.push(noteInput);
     saveToLocalStorage();
     renderNotes();
     noteInputRef.value = '';
@@ -139,7 +136,7 @@ function transferNote(indexNote) {
 function transferNoteToArchive(indexTrashNote) {
     let archiveNote = trashNotes.splice(indexTrashNote, 1)[0]; //transfer from trash array to archive array
     archiveNotes.push(archiveNote);
-    renderNotes();
+    saveToLocalStorage();
     renderTrashNotes();
     renderArchiveNotes();
 }
@@ -163,17 +160,11 @@ function restoreFromArchive(indexArchiveNote) {
 }
 
 //delete note
-function deleteNote(indexArchiveNote) {
-    archiveNotes.splice(indexArchiveNote, 1)[0];
-    saveToLocalStorage();
-    renderArchiveNotes();
-}
-
 function deleteArchivedNote(indexArchiveNote) {
     if (!confirm('Diese Notiz wirklich endgültig löschen?')) {
         return;
     }
-    archiveNotes.splice(indexArchiveNote, 1)[0];
+    archiveNotes.splice(indexArchiveNote, 1);
     saveToLocalStorage();
     renderArchiveNotes();
 }
