@@ -121,21 +121,33 @@ h1 {
     display: none;
 }
 
+dialog {
+    border-radius: 20px;
+    border-style: solid;
+    border: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 85%;
+    height: 85%;
+    max-width: 1000px;
+}
+
 /*dialog*/
-.dialog-content{
+.dialog-content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: 20px;
+    margin: 50px;
 }
 
-.header-dialog{
+.header-dialog {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.close-dialog-button{
+.close-dialog-button {
     width: 25px;
     cursor: pointer;
 }
