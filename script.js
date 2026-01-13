@@ -137,15 +137,15 @@ function transferNoteToArchive(indexTrashNote) {
 function toRestoreNote(indexTrashNote) {
     let restoreNote = trashNotes.splice(indexTrashNote, 1); //transfer from trash array to archive array
     notes.push(restoreNote);
-    renderNotes()
-    renderTrashNotes()
-    renderArchiveNotes()
+    saveToLocalStorage();
+    renderNotes();
+    renderTrashNotes();
 }
 
-function deleteNote() {
-    let archiveNote = trashNotes.splice(indexTrashNote, 1); //transfer from trash array to archive array
-    archiveNotes.push(archiveNote);
-    renderArchiveNotes()
+function deleteNote(indexArchiveNote) {
+    archiveNotes.splice(indexArchiveNote, 1);
+    saveToLocalStorage();
+    renderArchiveNotes();
 }
 
 //dialog archive
