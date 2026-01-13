@@ -8,7 +8,7 @@ const dialogRef = document.getElementById("dialogMode");
 
 
 function init() {
-    geFromLocalStorage();
+    getFromLocalStorage();
     renderNotes();
 }
 
@@ -32,7 +32,6 @@ function getNoteTemplate(indexNote) {
     `;
 }
 
-
 //rend trash notes
 function renderTrashNotes() {
     let trashContentRef = document.getElementById('trashContent');
@@ -53,7 +52,6 @@ function getTrashNoteTemplate(indexTrashNote) {
         </div>
     `;
 }
-
 
 //rend archved notes
 function renderArchiveNotes() {
@@ -86,8 +84,12 @@ function addNote() {
     }
     errorRef.classList.add('hidden');
     noteInputRef.classList.remove('input-error');
-    notes.push(noteInput); //add to array
-    renderNotes()
+
+    if (noteInput.value != '') {
+        notes.push(noteInput); //add to array
+    }
+    saveToLocalStorage();
+    renderNotes();
     noteInputRef.value = '';
 }
 
@@ -97,6 +99,17 @@ document.getElementById('noteInput').addEventListener('keydown', function (event
         addNote();
     }
 });
+
+//lokal storage
+function saveToLocalStorage() {
+    localStorage.setItem('notes', JSON.stringify(notes));
+}
+
+function getFromLocalStorage() {
+    let newNotes = JSON.parse(localStorage.getItem('notes'));
+    notes = newNotes; //kosjak
+}
+
 
 //transfer note to trash
 function transferNote(indexNote) {
@@ -111,8 +124,8 @@ function transferNoteToArchive(indexTrashNote) {
     let archiveNote = trashNotes.splice(indexTrashNote, 1); //transfer from trash array to archive array
     archiveNotes.push(archiveNote);
     renderNotes()
-    renderTrashNotes() 
-    renderArchiveNotes() 
+    renderTrashNotes()
+    renderArchiveNotes()
 }
 
 //restore note
@@ -120,11 +133,11 @@ function toRestoreNote(indexTrashNote) {
     let restoreNote = trashNotes.splice(indexTrashNote, 1); //transfer from trash array to archive array
     notes.push(restoreNote);
     renderNotes()
-    renderTrashNotes() 
-    renderArchiveNotes() 
+    renderTrashNotes()
+    renderArchiveNotes()
 }
 
-function deleteNote(){
+function deleteNote() {
     let archiveNote = trashNotes.splice(indexTrashNote, 1); //transfer from trash array to archive array
     archiveNotes.push(archiveNote);
     renderArchiveNotes()
@@ -132,26 +145,9 @@ function deleteNote(){
 
 //dialog archive
 function openArchivedNotesContainer() {
-  dialogRef.showModal();
+    dialogRef.showModal();
 }
 
 function closeArchivedNotesContainer() {
-  dialogRef.close();
+    dialogRef.close();
 }
-
-// function toggleDarkMode() {
-//     document.body.classList.toggle('dark-mode');
-// }
-
-//-------------------------------
-//save notes in local storage
-// function saveNote() {
-//     if (noteInput != "") {
-//         notes.push(noteInput);
-//     }
-
-//     saveToLocalStorage();
-
-//     renderNotes();
-// }
-//-------------------------------
