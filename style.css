@@ -68,7 +68,6 @@ h1 {
     flex: 1 1 calc(50% - 15px);
 }
 
-
 /*notes container*/
 .card-notes {
     background: rgba(255, 255, 255, 0.85);
@@ -79,6 +78,22 @@ h1 {
         inset 0 0 0 1px rgba(255, 255, 255, 0.6);
 }
 
+.card-notes-content{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+}
+
+.note-with-button-section{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+}
+
 .card-notes h2 {
     font-size: 22px;
     margin-bottom: 20px;
@@ -87,14 +102,20 @@ h1 {
 
 .note {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    gap: 12px;
     padding: 18px 20px;
     border-radius: 14px;
-    margin-bottom: 16px;
     font-size: 16px;
     color: #2e2f31;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    width: 100%;
+}
+
+.note-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end; /* Buttons rechts */
 }
 
 /*trash notes container*/

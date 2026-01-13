@@ -25,10 +25,13 @@ function getNoteTemplate(indexNote) {
     return `
         <div class="note">
             <span>${notes[indexNote]}</span>
-            <button onclick="transferNote(${indexNote})">Löschen</button>
+            <div class="note-actions">
+                <button onclick="transferNote(${indexNote})">Löschen</button>
+            </div>
         </div>
     `;
 }
+
 
 //rend trash notes
 function renderTrashNotes() {
@@ -43,11 +46,14 @@ function getTrashNoteTemplate(indexTrashNote) {
     return `
         <div class="note">
             <span>${trashNotes[indexTrashNote]}</span>
-            <button onclick="transferNoteToArchive(${indexTrashNote})">Archivieren</button>
-            <button onclick="toRestoreNote(${indexTrashNote})">Wiederherstellen</button>
+            <div class="note-actions">
+                <button onclick="transferNoteToArchive(${indexTrashNote})">Archivieren</button>
+                <button onclick="toRestoreNote(${indexTrashNote})">Wiederherstellen</button>
+            </div>
         </div>
     `;
 }
+
 
 //rend archved notes
 function renderArchiveNotes() {
@@ -62,7 +68,9 @@ function getArchiveNoteTemplate(indexArchiveNote) {
     return `
         <div class="note">
             <span>${archiveNotes[indexArchiveNote]}</span>
-            <button onclick="deleteNote(${indexArchiveNote})">entgültig löschen</button>
+            <div class="note-actions">
+                <button onclick="deleteNote(${indexArchiveNote})">Endgültig löschen</button>
+            </div>
         </div>
     `;
 }

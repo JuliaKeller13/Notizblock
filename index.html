@@ -29,33 +29,32 @@
             <div class="layout">
                 <section class="card-notes">
                     <h2>Meine Notizen</h2>
-                    <div id="notesContent"></div>
+                    <div class="card-notes-content" id="notesContent"></div>
                 </section>
                 <section class="card-notes trash">
                     <h2>Papierkorb</h2>
-                    <div id="trashContent"></div>
+                    <div class="card-notes-content" id="trashContent"></div>
 
                     <div class="trash-actions">
-
-                        <dialog id="dialogMode">
-                            <div class="dialog-content">
-                                <header class="header-dialog">
-                                    <h3>Archivierte Notizen</h3>
-                                    <img class="close-dialog-button" id="closeDialog" src="./assets/icons/close.png"
-                                        alt="Kreuz zum Fenster schließen" onclick="closeArchivedNotesContainer()"
-                                        tabindex="0">
-                                </header>
-                                <section>
-                                    <div id="archiveContent"></div>
-                                </section>
-                                <footer>
-                                    <button class="trash-actions-button">Alles entgültig löschen</button>
-                                </footer>
-                            </div>
-                        </dialog>
                         <button onclick="openArchivedNotesContainer()" class="trash-actions-button">Archiv</button>
                         <button class="trash-actions-button">Wiederherstellen</button>
                     </div>
+                    <dialog id="dialogMode">
+                        <div class="dialog-content">
+                            <header class="header-dialog">
+                                <h3>Archivierte Notizen</h3>
+                                <img class="close-dialog-button" id="closeDialog" src="./assets/icons/close.png"
+                                    alt="Kreuz zum Fenster schließen" onclick="closeArchivedNotesContainer()"
+                                    tabindex="0">
+                            </header>
+                            <section>
+                                <div id="archiveContent"></div>
+                            </section>
+                            <footer>
+                                <button class="trash-actions-button">Alles entgültig löschen</button>
+                            </footer>
+                        </div>
+                    </dialog>
                 </section>
             </div>
         </div>
