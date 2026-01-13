@@ -1,6 +1,5 @@
 let notes = [];
 let trashNotes = [];
-// let savedNotes = [];
 let archiveNotes = [];
 let noteInputRef = document.getElementById('noteInput');
 const dialogRef = document.getElementById("dialogMode");
@@ -10,6 +9,8 @@ const dialogRef = document.getElementById("dialogMode");
 function init() {
     getFromLocalStorage();
     renderNotes();
+    renderTrashNotes();
+    renderArchiveNotes();
 }
 
 //rend notes
@@ -103,11 +104,14 @@ document.getElementById('noteInput').addEventListener('keydown', function (event
 //lokal storage
 function saveToLocalStorage() {
     localStorage.setItem('notes', JSON.stringify(notes));
+    localStorage.setItem('trashNotes', JSON.stringify(trashNotes));
+    localStorage.setItem('archiveNotes', JSON.stringify(archiveNotes));
 }
 
 function getFromLocalStorage() {
-    let newNotes = JSON.parse(localStorage.getItem('notes'));
-    notes = newNotes; //kosjak
+    notes = JSON.parse(localStorage.getItem('notes'));
+    trashNotes = JSON.parse(localStorage.getItem('trashNotes'));
+    archiveNotes = JSON.parse(localStorage.getItem('archiveNotes'));
 }
 
 
@@ -115,17 +119,18 @@ function getFromLocalStorage() {
 function transferNote(indexNote) {
     let trashNote = notes.splice(indexNote, 1); //transfer from array to trash array
     trashNotes.push(trashNote);
-    renderNotes()
-    renderTrashNotes()
+    saveToLocalStorage();
+    renderNotes();
+    renderTrashNotes();
 }
 
 //transfer note to archive
 function transferNoteToArchive(indexTrashNote) {
     let archiveNote = trashNotes.splice(indexTrashNote, 1); //transfer from trash array to archive array
     archiveNotes.push(archiveNote);
-    renderNotes()
-    renderTrashNotes()
-    renderArchiveNotes()
+    renderNotes();
+    renderTrashNotes();
+    renderArchiveNotes();
 }
 
 //restore note
